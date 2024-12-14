@@ -62,7 +62,7 @@ let sketch12 = function(p) {
     }
 
     p.draw = function() {
-          resetButton = p.createButton('Réinitialiser');
+    
       p.background(0); // Fond noir pour mieux voir les tuiles
 
       // Mettre à jour les tuiles avec le contenu vidéo
@@ -115,6 +115,7 @@ let sketch12 = function(p) {
         p.noLoop(); // Arrête le dessin une fois résolu
         console.log("SOLVED");  // Affiche "SOLVED" dans la console si le puzzle est résolu
       }
+        resetButton = p.createButton('Réinitialiser');
     }
 
     p.windowResized = function() {
