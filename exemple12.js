@@ -62,13 +62,13 @@ let sketch12 = function(p) {
     }
 
     p.draw = function() {
+          resetButton = p.createButton('Réinitialiser');
       p.background(0); // Fond noir pour mieux voir les tuiles
 
       // Mettre à jour les tuiles avec le contenu vidéo
       updateTiles();
 
       // Affichage des tuiles
-    resetButton = p.createButton('Réinitialiser');
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           let index = board[i + j * cols];
