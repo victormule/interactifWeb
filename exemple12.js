@@ -48,7 +48,7 @@ let sketch12 = function(p) {
         board.push(-1); // Ajoute une case vide au plateau
 
         // Initialisation du bouton de réinitialisation
-        resetButton = p.createButton('Réinitialiser');
+        resetButton = p.createButton('Démarrer');
         resetButton.parent('exemple12Container');
         resetButton.mousePressed(resetPuzzle);
         resetButton.style('margin-top', '10px');
@@ -68,6 +68,7 @@ let sketch12 = function(p) {
       updateTiles();
 
       // Affichage des tuiles
+    resetButton = p.createButton('Réinitialiser');
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           let index = board[i + j * cols];
