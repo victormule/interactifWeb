@@ -10,6 +10,7 @@ let sketch12 = function(p) {
     let shuffleMoves = 100; // Nombre de mouvements pour mélanger
     let shuffleCount = 0; // Compteur de mouvements effectués
     let resetButton; // Bouton de réinitialisation
+    let cnv; // Référence au canvas
 
     p.preload = function() {
       // Chargez votre vidéo MP4 ici
@@ -20,40 +21,44 @@ let sketch12 = function(p) {
     p.setup = function() {
         let canvasWidth = p.windowWidth / 3;
         let canvasHeight = canvasWidth; // Carré pour le puzzle
-        let cnv = p.createCanvas(canvasWidth, canvasHeight);
-      cnv.parent('exemple12Container');
+        cnv = p.createCanvas(canvasWidth, canvasHeight);
+        cnv.parent('exemple12Container');
 
-      // Configure la vidéo : boucle, sans son, cachée
-      source.loop();
-      source.volume(0);
-      
-      w = p.width / cols; 
-      h = p.height / rows; 
+        // Configure la vidéo : boucle, sans son, cachée
+        source.loop();
+        source.volume(0);
+        
+        w = p.width / cols; 
+        h = p.height / rows; 
 
-      // Création des tuiles
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          let img = p.createImage(w, h); // Crée une image vide pour la pièce
-          let index = i + j * cols; // Calcule l'index de la pièce
-          board.push(index); // Ajoute l'index au tableau du plateau
-          let tile = new Tile(index, img, i, j); // Crée une nouvelle pièce avec origI=i, origJ=j
-          tiles[index] = tile; // Ajoute la pièce au tableau des pièces
+        // Création des tuiles
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            let img = p.createImage(w, h); // Crée une image vide pour la pièce
+            let index = i + j * cols; // Calcule l'index de la pièce
+            board.push(index); // Ajoute l'index au tableau du plateau
+            let tile = new Tile(index, img, i, j); // Crée une nouvelle pièce avec origI=i, origJ=j
+            tiles[index] = tile; // Ajoute la pièce au tableau des pièces
+          }
         }
-      }
 
-      // Supprime la dernière pièce (qui sera la case vide)
-      blankIndex = board.pop();
-      tiles.pop();
-      board.push(-1); // Ajoute une case vide au plateau
+        // Supprime la dernière pièce (qui sera la case vide)
+        blankIndex = board.pop();
+        tiles.pop();
+        board.push(-1); // Ajoute une case vide au plateau
 
-      // Initialisation du bouton de réinitialisation
-      resetButton = p.createButton('Réinitialiser');
-      resetButton.parent('exemple12Container');
-      resetButton.mousePressed(resetPuzzle);
-      resetButton.style('margin-top', '10px');
+        // Initialisation du bouton de réinitialisation
+        resetButton = p.createButton('Réinitialiser');
+        resetButton.parent('exemple12Container');
+        resetButton.mousePressed(resetPuzzle);
+        resetButton.style('margin-top', '10px');
 
-      // Commence le mélange
-      shufflePuzzle();
+        // Positionne le bouton en dessous du puzzle
+        let canvasPos = cnv.position();
+        resetButton.position(canvasPos.x , canvasPos.y + p.height + 10);
+
+        // Commence le mélange
+        shufflePuzzle();
     }
 
     p.draw = function() {
@@ -112,9 +117,9 @@ let sketch12 = function(p) {
     }
 
     p.windowResized = function() {
-    let canvasWidth = p.windowWidth / 3;
-    let canvasHeight = canvasWidth; // Carré pour le puzzle
-    let cnv = p.createCanvas(canvasWidth, canvasHeight);
+      let canvasWidth = p.windowWidth / 3;
+      let canvasHeight = canvasWidth; // Maintient le carré
+      p.resizeCanvas(canvasWidth, canvasHeight);
 
       w = p.width / cols; 
       h = p.height / rows; 
@@ -124,6 +129,10 @@ let sketch12 = function(p) {
       }
       p.background(0); // Rafraîchit le fond après redimensionnement
       updateTiles(); // Met à jour les tuiles avec la nouvelle taille
+
+      // Repositionne le bouton de réinitialisation
+      let canvasPos = cnv.position();
+      resetButton.position(canvasPos.x , canvasPos.y + p.height + 10);
     }
 
     p.mousePressed = function() {
@@ -138,9 +147,9 @@ let sketch12 = function(p) {
       let videoFrame = source.get(0, 0, source.width, source.height);
       for (let tile of tiles) {
         if (tile) {
-          let sx = tile.origI * w;
-          let sy = tile.origJ * h;
-          tile.img = videoFrame.get(tile.origI * source.width / cols, tile.origJ * source.height / rows, source.width / cols, source.height / rows);
+          let sx = tile.origI * source.width / cols;
+          let sy = tile.origJ * source.height / rows;
+          tile.img = videoFrame.get(sx, sy, source.width / cols, source.height / rows);
         }
       }
     }
@@ -206,7 +215,10 @@ let sketch12 = function(p) {
       }
       source.loop(); // Reprend la vidéo
       simpleShuffle(board, shuffleMoves); // Mélange à nouveau
-      p.loop(); // Reprend le dessin
+      shuffling = true;
+      p.noLoop(); // Arrête le dessin pendant le mélange
+      shufflePuzzle(); // Recommence le mélange
+      // p.loop() sera appelé à la fin de shufflePuzzle
     }
 
     function getPossibleMoves(arr) {
@@ -264,6 +276,5 @@ let sketch12 = function(p) {
       }
     }
 
-  };
-
+};
 new p5(sketch12);
