@@ -115,7 +115,7 @@ let sketch12 = function(p) {
         p.noLoop(); // Arrête le dessin une fois résolu
         console.log("SOLVED");  // Affiche "SOLVED" dans la console si le puzzle est résolu
       }
-        resetButton = p.createButton('Réinitialiser');
+        
     }
 
     p.windowResized = function() {
