@@ -1,149 +1,403 @@
+<!-- 
+  Étude sur Notre Dame interactif
+  Version: 1.0
+  Auteur: Victor Mule
+  Description: Étude numérique pour le site de Notre Dame dans le cadre de la recherche anthropologique.
+-->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <title>NotreDame</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  
+  <!-- Librairie p5.js pour les animations interactives -->
   <script src="p5.js"></script>
+  
+  <!-- Librairie p5.sound pour le traitement audio -->
   <script src="p5.sound.min.js"></script>
 </head>
-  <body>
-    <!-- Titre principal -->
-    <h1>Possibilités du Web Interactif</h1>
-    
-    <!-- Exemple 14 (Texte Interactif) -->
-    <div class="exemple">
-      <div id="exemple14Container"></div>
-    </div>
-
-<h2>La Diversité des Supports Numériques</h2>
-<div>
-  <p>Le numérique englobe une multitude de supports — PC, smartphones, tablettes — chacun avec des formats, des capacités techniques, des systèmes d'exploitation, des configurations colorimétriques et des qualités audio distinctes. Cette diversité pose des défis uniques en termes de conception et de développement, mais elle offre également une richesse d'opportunités pour la création de contenus interactifs. Chaque plateforme possède ses propres spécificités techniques et ergonomiques, influençant la manière dont le contenu est perçu et interactive.</p>
-  <img src="./images/joconde1.png" alt="La Joconde" class="joconde">
-</div>
-<br></br>
-<h2>Contexte d'Utilisation</h2>
-<div>
-  <p>Le contexte dans lequel l'utilisateur accède au web interactif joue un rôle crucial. Que ce soit installé dans un canapé, dans le tumulte du métro ou concentré au bureau, les attitudes et les gestuelles adoptées différemment, impactant la réception des informations. Par exemple, une interface conçue pour une utilisation en déplacement doit être rapide, réactive et facile à naviguer d'une seule main.</p>
-  <img src="./images/Modulor-Le-Corbusier.png" alt="Le Modulor Le Corbusier" class="modulor">
-  <img src="./images/Modulor3.png" alt="Le Modulor 3" class="modulor">
-  <p>Les différents formats d'écran et les capacités techniques varient considérablement d'un support à l'autre. Les PC de bureau, par exemple, disposent généralement de plus grandes résolutions et de capacités graphiques supérieures, permettant des visuels détaillés et des animations complexes. En revanche, les smartphones et les tablettes, avec leurs écrans plus petits et souvent tactiles, ont obligatoirement des interfaces épurées et des interactions simplifiées. Cette variabilité impose aux concepteurs de penser de manière adaptative, en utilisant des technologies telles que le responsive design pour assurer une expérience cohérente et optimale sur tous les dispositifs.</p>
-</div>
-
-<!-- Exemple 3 -->
-<div class="exemple">
-  <h2>Temps de Chargement :</h2>
-  <p>Les temps de chargement peuvent varier en fonction de la connexion internet et des performances de l'appareil. Des temps de chargement longs peuvent frustrer l'utilisateur et nuire à l'engagement, d'où l'importance d'optimiser les ressources et les performances du site.</p>
-  <br></br>
-  <br></br>
-  <div id="exemple3Container"></div>
-  <note>Pour afficher l'image, restez appuyer sur la touche MAJ jusqu'à la fin du téléchargement.</note>
+<body>
+  <!-- Titre principal -->
+  <h1>Possibilités du Web Interactif</h1>
   
-</div>
-<br></br>
-<br></br>
+  <!-- Exemple 14 (Texte Interactif) -->
+  <div class="exemple">
+    <div id="exemple14Container"></div>
+  </div>
+
+  <!-- Section : La Diversité des Supports Numériques -->
+  <h2>La Diversité des Supports Numériques</h2>
+  <div>
+    <p>Le numérique englobe une multitude de supports — PC, smartphones, tablettes — chacun avec des formats, des capacités techniques, des systèmes d'exploitation, des configurations colorimétriques et des qualités audio distinctes. Cette diversité impose une flexibilité en termes de conception et de développement. Chaque plateforme possède ses propres spécificités techniques et ergonomiques, influençant la manière dont le contenu est perçu et interactive.</p>
+    <img src="./images/joconde1.png" alt="La Joconde" class="joconde">
+    <p>Cette diversité oblige les concepteurs à adopter une approche adaptative, en utilisant des technologies telles que le responsive design pour garantir une expérience cohérente et optimale sur tous les types de dispositifs. Même si l'on souhaite cibler uniquement un seul support pour des raisons techniques ou autres, il est essentiel de prendre en compte la notion de polymatérialité des supports. Par exemple, le site <a href="http://cloitreprison.fr/" target="_blank">http://cloitreprison.fr/</a> n'est pas accessible sur smartphone et affiche donc un message invitant les utilisateurs à se connecter depuis un ordinateur lorsqu'ils tentent d'y accéder via un smartphone.</p>
+    <img src="./images/smart.png" alt="No Smartphone" class="smartphone">
+  </div>
+  
+  <br /><br />
+  
+  <!-- Section : Contexte d'Utilisation -->
+  <h2>Contexte d'Utilisation</h2>
+  <div>
+    <p>Le contexte dans lequel l'utilisateur accède au web interactif joue un rôle crucial. Que ce soit installé dans un canapé, dans le tumulte du métro ou concentré au bureau, les attitudes et les gestuelles adoptées diffèrent, impactant la réception des informations. Par exemple, une interface conçue pour une utilisation en déplacement doit être rapide, réactive et facile à naviguer d'une seule main.</p>
+    <img src="./images/Modulor-Le-Corbusier.png" alt="Le Modulor Le Corbusier" class="modulor">
+    <img src="./images/Modulor3.png" alt="Le Modulor 3" class="modulor">
+    <p>Il est essentiel de cibler son public, car on n'interagit pas de la même manière avec un enfant qu'avec une personne âgée. Il est également important de prendre en compte les personnes aveugles, malvoyantes ou sourdes afin qu'elles puissent elles aussi accéder pleinement à l'immersion.</p>
+  </div>
+  
+  <br /><br />
+  
+  <!-- Exemple 3 : Temps de Chargement -->
+  <div class="exemple">
+    <h2>Temps de Chargement :</h2>
+    <p>Les temps de chargement peuvent varier en fonction de la connexion internet et des performances de l'appareil. Des temps de chargement longs peuvent frustrer l'utilisateur et nuire à l'engagement, d'où l'importance d'optimiser les ressources et les performances du site.</p>
+    
+    <br /><br />
+    
+    <div id="exemple3Container"></div>
+    <note>Pour afficher l'image, restez appuyé sur la touche MAJ jusqu'à la fin du téléchargement.</note>
+  </div>
+  
+  <br /><br />
+  
+  <!-- Section : Interaction avec la souris -->
   <h2>Interaction avec la souris</h2>
-  <br></br>
-  <!-- Exemple 1 -->
+  <br />
+  
+  <!-- Exemple 1 : Mouvement -->
   <div class="exemple">
     <h3>Mouvement</h3>
-    <p>mouvements de la souris pour activer des fonctionnalités de zoom ou de rotation.balayage avec la souris pour revenir en arrière ou avancer dans un menu </p>
-    <div id="exemple1Container"></div><div id="exemple5Container"></div>
+    <p><strong>Description :</strong> Utilisation des coordonnées X et Y de la souris pour déclencher des événements.</p>
+    <p><strong>Cas Général d'Utilisation :</strong> Suivi du curseur, détection de position pour des animations interactives.</p>
+    <p><strong>Compatibilité avec Smartphone :</strong> Sur les appareils tactiles, les mouvements de la souris sont remplacés par des gestes de glissement, liés aux clics tactiles.</p>
+    <div id="exemple1Container"></div>
+    <div id="exemple5Container"></div>
   </div>
-  <br></br>
-  <br></br>
-  <!-- Exemple 2 -->
+  
+  <br /><br />
+  
+  <!-- Exemple 2 : Survol -->
   <div class="exemple">
-    <h3>Survol </h3>
-    <p>Déclenchez l'affichage des informations supplémentaires ou Active des animations, des changements de couleur ou des effets de surbrillance sans nécessiter de clic.</p>
-    <div id="exemple2Container"></div><div id="exemple9Container"></div>
+    <h3>Survol</h3>
+    <p><strong>Description :</strong> Déclenchement d'actions lorsque le curseur survole un élément sans cliquer.</p>
+    <p><strong>Cas Général d'Utilisation :</strong> Affichage de menus déroulants, infobulles informatives, effets visuels.</p>
+    <p><strong>Compatibilité avec Smartphone :</strong> Non applicable directement, souvent simulé par un premier clic pour afficher les options.</p>
+    <div id="exemple2Container"></div>
+    <div id="exemple9Container"></div>
   </div>
-  <br></br>
-  <br></br>
-  <!-- Exemple 1 -->
+  
+  <br /><br />
+  
+  <!-- Exemple 3 : Clic Simple (Droit ou Gauche) -->
   <div class="exemple">
-    <h3>Clic Simple </h3>
-    <p>Sélectionner des éléments, activer des fonctionnalités interactives.</p>
+    <h3>Clic Simple (Droit ou Gauche)</h3>
+    <p><strong>Description :</strong> Activation ou sélection d'éléments par un seul clic.</p>
+    <p><strong>Cas Général d'Utilisation :</strong> Ouverture de liens, activation de boutons, sélection d'éléments.</p>
+    <p><strong>Compatibilité avec Smartphone :</strong> Remplacé par des tapotements tactiles.</p>
     <div id="exemple4Container"></div>
   </div>
-  <br></br>
-  <br></br>
-
-    <!-- Exemple 1 -->
-    <div class="exemple">
-      <h3>Double-Clic </h3>
-      <p>Un double-clic peut ouvrir des documents, des applications intégrées ou des fichiers multimédias directement depuis le navigateur.</p>
-      <div id="exemple6Container"></div>
-    </div>
-    <br></br>
-    <br></br>
-    
-    <!-- Exemple 1 -->
-    <div class="exemple">
-      <h3>Maintien du Clic </h3>
-      <p> Permet aux utilisateurs de zoomer sur des images. Déplacement d’éléments sur l’écran pour repositionner des objets graphiques ou des cartes mentales</p>
-      <div id="exemple8Container"></div>
-    </div>
-    <br></br>
-    <br></br>
-
-        <!-- Exemple 1 -->
-        <div class="exemple">
-          <h3>Glisser deposer</h3>
-          <p> </p>
-          <div id="exemple7Container"></div>
-        </div>
-        <br></br>
-        <br></br>
-              <!-- Exemple 1 -->
-            <div class="exemple">
-            <h3>Molette de Défilement</h3>
-            <p>La molette permet un contrôle précis sur la vitesse et la direction du défilement vertical ou horizontal. Permet de zoomer in ou out sur des images </p>
-            <div id="exemple10Container"></div>
-            </div>
-            <br></br>
-            <br></br>
-
-                <h2>Interaction avec le clavier</h2>
-                <div class="exemple"></div>
-                <h3>Saisie clavier</h3>
-                <p>Chaque touche possède un numéro d'identification unique. Ces numéros peuvent être utilisés pour positionner des formes dans l'espace.</p>
-                <div id="exemple11Container"></div>
-                <br></br>
-                <br></br>
-
-                <h2>Multimédia</h2>
-                <div class="exemple">
-                  <h3>La Video</h3>
-                  <p>Exemple d'un puzzle video, utiliser le glisser déposer pour déplacer les morceaux du puzzle.</p>
-                  <div id="exemple12Container"></div>
-                  <br><br>
-              
-                  <h3>Le Son</h3>
-                  <p>@arialabel. Two grey circles on a light grey background that move as the user moves their mouse and plays different noises based on their distance from each other </p>
-                  <div id="exemple13Container"></div>
-                  <br><br>
-                </div>
-              
-
-
   
+  <br /><br />
+  
+  <!-- Exemple 4 : Double Clic -->
+  <div class="exemple">
+    <h3>Double Clic</h3>
+    <p><strong>Description :</strong> Activation rapide d'une action par deux clics successifs.</p>
+    <p><strong>Cas Général d'Utilisation :</strong> Ouverture de fichiers ou dossiers, lancement d'applications spécifiques.</p>
+    <p><strong>Compatibilité avec Smartphone :</strong> Rarement utilisé, remplacé par des tapotements rapides ou autres gestes.</p>
+    <div id="exemple6Container"></div>
+  </div>
+  
+  <br /><br />
+  
+  <!-- Exemple 5 : Maintien du Clic -->
+  <div class="exemple">
+    <h3>Maintien du Clic</h3>
+    <p><strong>Description :</strong> Maintenir le bouton de la souris enfoncé pour effectuer des actions continues ou des sélections multiples.</p>
+    <p><strong>Cas Général d'Utilisation :</strong> Sélection de zones sur une carte, création de sélections multiples dans des listes.</p>
+    <p><strong>Compatibilité avec Smartphone :</strong> Simulé par des appuis longs (long press).</p>
+    <div id="exemple8Container"></div>
+  </div>
+  
+  <br /><br />
+  
+  <!-- Exemple 6 : Glisser-Déposer -->
+  <div class="exemple">
+    <h3>Glisser-Déposer</h3>
+    <p><strong>Description :</strong> Déplacer des éléments d'une zone à une autre en les faisant glisser avec la souris.</p>
+    <p><strong>Cas Général d'Utilisation :</strong> Organisation de contenu, upload de fichiers, interactions dans les jeux.</p>
+    <p><strong>Compatibilité avec Smartphone :</strong> Supporté par les gestes de glisser-déposer tactiles.</p>
+    <div id="exemple7Container"></div>
+  </div>
+  
+  <br /><br />
+  
+  <!-- Exemple 7 : Molette de Défilement -->
+  <div class="exemple">
+    <h3>Molette de Défilement</h3>
+    <p><strong>Description :</strong> Utilisation de la molette de la souris pour faire défiler le contenu verticalement ou horizontalement.</p>
+    <p><strong>Cas Général d'Utilisation :</strong> Navigation sur des pages longues, zoom avant/arrière sur des images.</p>
+    <p><strong>Compatibilité avec Smartphone :</strong> Remplacée par le défilement tactile par glissement.</p>
+    <div id="exemple10Container"></div>
+  </div>
+  
+  <br /><br />
+  
+  <!-- Exemple 8 : Clic Molette -->
+  <div class="exemple">
+    <h3>Clic Molette</h3>
+    <p><strong>Description :</strong> Utilisation de la molette de la souris comme un bouton supplémentaire pour des actions spécifiques.</p>
+    <p><strong>Cas Général d'Utilisation :</strong> Ouverture de liens dans de nouveaux onglets, activation de modes spéciaux.</p>
+    <p><strong>Compatibilité avec Smartphone :</strong> Généralement non supporté, certaines actions peuvent être mappées à des gestes spécifiques.</p>
+    <div id="exemple16Container"></div>
+  </div>
+  
+  <br /><br />
+  
+  <!-- Section : Interaction avec le clavier -->
+  <h2>Interaction avec le clavier</h2>
+  <div class="exemple"></div>
+  
+  <!-- Exemple 9 : Saisie clavier -->
+  <h3>Saisie clavier</h3>
+  <p><strong>Description :</strong> Chaque touche possède un numéro d'identification unique. Ces numéros peuvent être utilisés pour positionner des formes dans l'espace.</p>
+  <p><strong>Cas Général d'Utilisation :</strong> Remplissage de formulaires, recherche sur le site.</p>
+  <p><strong>Compatibilité avec Smartphone :</strong> Remplacée par le clavier virtuel tactile.</p>
+  <div id="exemple11Container"></div>
+  
+  <br /><br />
+  
+  <!-- Section : Multimédia -->
+  <h2>Multimédia</h2>
+  <p>
+    Le web interactif permet d'intégrer différents contenus multimédias. Parmi ceux-ci, on retrouve les <strong>images</strong>, les <strong>vidéos</strong>, le <strong>son</strong>, les éléments <strong>3D</strong>, les <strong>documents</strong>, les <strong>animations</strong>, les <strong>infographies et graphiques interactifs</strong>, ainsi que les <strong>PDF et documents téléchargeables</strong>.
+  </p>
+  
+  <!-- Exemple 10 : La Vidéo -->
+  <div class="exemple">
+    <h3>La Video</h3>
+    <p>Exemple d'un puzzle vidéo, utiliser le glisser-déposer pour déplacer les morceaux du puzzle.</p>
+    <div id="exemple12Container"></div>
+    
+    <br /><br /><br /><br />
+  </div>
+  
+  <!-- Exemple 11 : Le Son -->
+  <div class="exemple">
+    <h3>Le Son</h3>
+    <p>@arialabel. Two grey circles on a light grey background that move as the user moves their mouse and plays different noises based on their distance from each other.</p>
+    <div id="exemple13Container"></div>
+    
+    <br /><br /><br /><br />
+  </div>
+  
+  <div class="exemple"></div>
+  
+  <!-- Exemple 12 : Objet 3D -->
+  <h3>Objet 3D</h3>
+  <p>Exemple d'objet 3D dont la rotation dépend du mouvement de la souris.</p>
+  <div id="exemple15Container"></div>
+  
+  <br /><br /><br /><br /><br /><br />
+  
+  <!-- Section : Exemples de Sites Interactifs -->
+  <h2>Exemples de Sites Interactifs</h2>
+  <p>
+    Voici quelques exemples qui illustrent les différentes facettes de l’interactivité sur le web, en mettant en lumière leurs aspects, avantages, inconvénients et les enjeux qu’ils abordent.
+  </p>
+  
+  <br /><br />
+  
+  <!-- Exemple de Site 1 : Cloître Prison -->
+  <h4><a href="http://cloitreprison.fr/" target="_blank">Cloître Prison</a></h4>
+  
+  <br />
+  
+  <img src="./images/cloitreprison.png" alt="Cloitre Prison" class="joconde">
+  
+  <br /><br />
+  
+  <div>
+    <p><strong>Description :</strong> Cloître Prison est un webdocumentaire et une production scientifique collective, fruit de quatre ans de recherches par une équipe d’historiens, dans le cadre du projet « Enfermements ».</p>
+    
+    <p><strong>Aspects :</strong></p>
+    <p>Navigation principalement destinée aux ordinateurs de bureau avec une interface optimisée pour une expérience immersive.</p>
+    <p>Utilisation d’animations et de graphiques pour simuler l’environnement carcéral.</p>
+    <p>Contenus informatifs et narratifs intégrés dans l’expérience de navigation.</p>
+    <p>Interactions limitées aux dispositifs de pointage (souris), sans prise en charge avancée des interactions tactiles.</p>
+    
+    <p><strong>Avantages :</strong></p>
+    <p>Expérience utilisateur immersive et engageante.</p>
+    <p>Capacité à transmettre des émotions et des messages de manière efficace.</p>
+    <p>Design esthétique et professionnel.</p>
+    
+    <p><strong>Inconvénients :</strong></p>
+    <p>Peut être exigeant en termes de performances, nécessitant des appareils puissants.</p>
+    <p>Accessibilité limitée pour les utilisateurs malvoyants ou utilisant des technologies d’assistance.</p>
+    
+    <p><strong>Enjeu Interactif :</strong> Utiliser la technologie interactive pour sensibiliser et éduquer le public sur des sujets sociaux complexes en offrant une expérience immersive qui favorise l’empathie et la compréhension.</p>
+  </div>
+  
+  <br /><br />
+  
+  <!-- Exemple de Site 2 : Make Me Pulse 2019 -->
+  <h4><a href="https://2019.makemepulse.com/" target="_blank">Make Me Pulse 2019</a></h4>
+  
+  <br />
+  
+  <img src="./images/nomadic.png" alt="Nomadic Tribe" class="joconde">
+  
+  <br /><br />
+  
+  <p><strong>Description :</strong> Make Me Pulse 2019 réalise Nomadic Tribe, un conte interactif où l’animation est mise en avant.</p>
+  
+  <br /><br />
+  
+  <p><strong>Aspects :</strong></p>
+  <p>Interface utilisateur dynamique avec animations interactives.</p>
+  <p>Intégration de contenu multimédia (audio, vidéo).</p>
+  <p>Personnalisation de l’expérience utilisateur en fonction des interactions.</p>
+  
+  <p><strong>Avantages :</strong></p>
+  <p>Engagement élevé des utilisateurs grâce à l’interactivité.</p>
+  <p>Design moderne et attractif.</p>
+  
+  <p><strong>Inconvénients :</strong></p>
+  <p>Complexité de développement et maintenance élevée.</p>
+  <p>Peut présenter des problèmes de compatibilité sur certains navigateurs ou appareils mobiles.</p>
+  
+  <p><strong>Enjeu Interactif :</strong> Créer une plateforme interactive qui engage activement les utilisateurs dans le processus de découverte visuel et musicale, rendant l’expérience plus personnelle et mémorable.</p>
+  
+  <br /><br />
+  
+  <!-- Exemple de Site 3 : Nulo par Dannniel (Dribbble) -->
+  <h4>Nulo par Dannniel (Dribbble)</h4>
+  
+  <video autoplay loop muted class="nulo-video">
+    <source src="video/nulo.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la balise vidéo.
+  </video>
+  
+  <br /><br />
+  
+  <p><strong>Description :</strong> Ce site interactif créé par Dannniel pour Nulo, une marque de nourriture pour chats, présente un chat animé qui suit la gamelle de croquettes guidé par les mouvements de la souris de l’utilisateur.</p>
+  
+  <p><strong>Aspects :</strong></p>
+  <p>Animation en temps réel réagissant aux mouvements de la souris.</p>
+  <p>Design ludique et engageant adapté à la cible (amoureux des chats).</p>
+  <p>Utilisation de la 3D et des technologies de suivi de la souris pour une interaction fluide.</p>
+  
+  <p><strong>Avantages :</strong></p>
+  <p>Haute interactivité qui capte l’attention des utilisateurs.</p>
+  <p>Expérience utilisateur amusante et mémorable.</p>
+  <p>Renforcement de l’identité de marque à travers une animation personnalisée.</p>
+  
+  <p><strong>Inconvénients :</strong></p>
+  <p>Peut ralentir le chargement du site si mal optimisé.</p>
+  <p>Accessibilité limitée pour les utilisateurs ne pouvant pas utiliser la souris.</p>
+  
+  <p><strong>Enjeu Interactif :</strong> Utiliser des animations réactives pour créer une connexion émotionnelle avec les utilisateurs et renforcer l’engagement envers la marque de manière ludique et innovante, uniquement avec le mouvement de la souris.</p>
+  
+  <br /><br />
+  
+  <!-- Exemple de Site 4 : Inside A Genius Mind -->
+  <h4><a href="https://artsandculture.google.com/experiment/inside-a-genius-mind/TAEPZtXK2s139g?hl=en&pli=1" target="_blank">Inside A Genius Mind</a></h4>
+  
+  <br />
+  
+  <img src="./images/leonardo.png" alt="inside a genius mind" class="joconde">
+  
+  <br />
+  
+  <p><strong>Description :</strong> "Leonardo: Inside a Genius Mind" est une expérience interactive créée par Google qui plonge les utilisateurs dans l'univers de Léonard de Vinci. Ce site explore les différentes facettes de son génie à travers des contenus multimédias, des visualisations 3D de ses inventions, et des récits interactifs de ses œuvres artistiques et scientifiques.</p>
+  
+  <p><strong>Aspects :</strong></p>
+  <p>Exploration interactive des inventions et des œuvres d'art de Léonard de Vinci en 3D.</p>
+  <p>Intégration de vidéos explicatives et de récits audio pour une immersion complète.</p>
+  <p>Utilisation de la réalité augmentée (AR) pour visualiser les croquis et les modèles de Léonard dans un environnement réel.</p>
+  <p>Navigation intuitive avec des menus clairs et des points d'interaction facilement identifiables.</p>
+  
+  <p><strong>Avantages :</strong></p>
+  <p>Expérience utilisateur immersive qui permet une compréhension approfondie du génie de Léonard de Vinci.</p>
+  <p>Utilisation efficace des technologies modernes comme la 3D et la réalité augmentée pour enrichir le contenu éducatif.</p>
+  <p>Design visuellement attrayant et professionnel qui capte l'attention des utilisateurs.</p>
+  <p>Accessibilité améliorée grâce à des contenus multimédias variés (texte, audio, vidéo, interactif).</p>
+  
+  <p><strong>Inconvénients :</strong></p>
+  <p>Peut être exigeant en termes de performances, nécessitant des appareils avec de bonnes capacités graphiques.</p>
+  <p>Complexité de navigation pour les utilisateurs moins familiers avec les interfaces interactives avancées.</p>
+  <p>Compatibilité limitée avec certains navigateurs plus anciens ou appareils mobiles moins puissants.</p>
+  
+  <p><strong>Enjeu Interactif :</strong> Utiliser des technologies interactives avancées pour offrir une expérience éducative et immersive qui met en lumière le génie multidisciplinaire de Léonard de Vinci. L'objectif est de rendre l'apprentissage plus engageant et accessible, tout en démontrant l'importance de l'innovation et de la créativité dans les domaines artistiques et scientifiques.</p>
+  
+  <br /><br />
+  
+  <!-- Inclusion des scripts JavaScript -->
+  <!-- Exemple 1 : Mouvement -->
   <script src="exemple1.js"></script>
+  
+  <!-- Exemple 2 : Survol -->
   <script src="exemple2.js"></script>
+  
+  <!-- Exemple 3 : Temps de Chargement -->
   <script src="exemple3.js"></script>
+  
+  <!-- Exemple 4 : Clic Simple -->
   <script src="exemple4.js"></script>
+  
+  <!-- Exemple 5 : Mouvement supplémentaire -->
   <script src="exemple5.js"></script>
+  
+  <!-- Exemple 6 : Double Clic -->
   <script src="exemple6.js"></script>
+  
+  <!-- Exemple 7 : Glisser-Déposer -->
   <script src="exemple7.js"></script>
+  
+  <!-- Exemple 8 : Maintien du Clic -->
   <script src="exemple8.js"></script>
+  
+  <!-- Exemple 9 : Survol supplémentaire -->
   <script src="exemple9.js"></script>
+  
+  <!-- Exemple 10 : Molette de Défilement -->
   <script src="exemple10.js"></script>
+  
+  <!-- Exemple 11 : Saisie clavier -->
   <script src="exemple11.js"></script>
+  
+  <!-- Exemple 12 : La Vidéo -->
   <script src="exemple12.js"></script>
+  
+  <!-- Exemple 13 : Le Son -->
   <script src="exemple13.js"></script>
+  
+  <!-- Exemple 14 : Texte Interactif -->
   <script src="exemple14.js"></script>
+  
+  <!-- Exemple 15 : Objet 3D -->
+  <script src="exemple15.js"></script>
+  
+  <!-- Script JavaScript pour ajuster la largeur de la vidéo dynamiquement -->
+  <script>
+    /**
+     * Ajuste dynamiquement la largeur de la vidéo en fonction de la largeur de la fenêtre.
+     */
+    function setVideoWidth() {
+      const video = document.querySelector('.nulo-video');
+      if (video) {
+        video.style.width = (window.innerWidth / 3) + 'px';
+      }
+    }
 
+    // Appel de la fonction lors du chargement de la page
+    window.addEventListener('load', setVideoWidth);
+    
+    // Appel de la fonction lors du redimensionnement de la fenêtre
+    window.addEventListener('resize', setVideoWidth);
+  </script>
+  
 </body>
 </html>
-
-
