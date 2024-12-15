@@ -44,8 +44,27 @@ h3 {
   margin-right: 15%;
 }
 
+h4 {
+  font-size: 1.8em;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: Center;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
 /* Styles pour les paragraphes (p) */
 p {
+  font-size: 1.2em;
+  color: #666;
+  text-align: justify; /* Justifie le texte à gauche et à droite */
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 20px;
+}
+p2 {
   font-size: 1.2em;
   color: #666;
   text-align: justify; /* Justifie le texte à gauche et à droite */
@@ -67,7 +86,7 @@ note {
 }
 
 /* Styles pour les images */
-.joconde, .modulor {
+.joconde, .modulor, .smartphone {
   width: 40vw; /* Ajustez selon vos besoins */
   height: auto;
 }
@@ -91,5 +110,3 @@ note {
   justify-content: center;
   align-items: center;
 }
-
-  
