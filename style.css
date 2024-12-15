@@ -110,3 +110,43 @@ note {
   justify-content: center;
   align-items: center;
 }
+
+/* Styles spécifiques au conteneur du texte interactif */
+#exemple16Container {
+  position: relative; /* Nécessaire pour le positionnement absolu des enfants */
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles pour le champ de saisie */
+#champInput {
+  position: absolute;
+  top: 10px; /* Ajustez cette valeur selon vos besoins */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Assure que le champ de saisie est au-dessus du canvas */
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+#champInput::placeholder {
+  color: #999; /* Couleur du placeholder */
+  font-style: italic; /* Style du texte du placeholder */
+}
+
+/* Styles pour le titre */
+#enteteTitre {
+  position: absolute;
+  top: -40px; /* Position au-dessus du canvas */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  color: #fff; /* Assurez-vous que le texte est visible sur le fond du canvas */
+  font-family: Arial, sans-serif;
+  font-size: 1.5em;
+}
