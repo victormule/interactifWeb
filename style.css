@@ -86,8 +86,14 @@ note {
 }
 
 /* Styles pour les images */
-.joconde, .modulor, .smartphone {
+.joconde, .smartphone {
   width: 40vw; /* Ajustez selon vos besoins */
+  height: auto;
+}
+
+/* Styles pour les images */
+.modulor {
+  width: 30vw; /* Ajustez selon vos besoins */
   height: auto;
 }
 
