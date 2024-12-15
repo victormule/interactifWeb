@@ -201,7 +201,7 @@ let sketch14 = function(p) {
       constructor(char, x, y) {
         this.char = char;
         this.originalPos = p.createVector(x, y);
-        this.position = p.createVector(x, y);
+        this.position = p.createVector(x, y/10);
         this.velocity = p.createVector(0, 0);
       }
 
